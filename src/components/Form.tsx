@@ -1,14 +1,21 @@
 import Input, { InputProps } from './Input';
 import Submit, { SubmitProps } from './Submit';
 import logo from '../logo.svg';
+import Prompt, { PromptProps } from './Prompt';
 
 export interface FormProps {
     inputBoxes: InputProps[];
-    buttons: SubmitProps[];
+    button: SubmitProps;
     formName: string;
+    prompt?: PromptProps;
 }
 
-const Form = ({ inputBoxes, buttons, formName }: FormProps): JSX.Element => {
+const Form = ({
+    inputBoxes,
+    button,
+    formName,
+    prompt,
+}: FormProps): JSX.Element => {
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -40,16 +47,20 @@ const Form = ({ inputBoxes, buttons, formName }: FormProps): JSX.Element => {
                             handleChange={inputBox.handleChange}
                         />
                     ))}
-                    {buttons.map((button, idx) => (
-                        <Submit
-                            key={idx}
-                            label={button.label}
-                            handleSubmit={button.handleSubmit}
-                            isSpin={button.isSpin}
-                            done={button.done}
-                            doneMessage={button.doneMessage}
+                    {prompt && (
+                        <Prompt
+                            message={prompt.message}
+                            isValid={prompt.isValid}
                         />
-                    ))}
+                    )}
+                    <Submit
+                        key="submit_id"
+                        label={button.label}
+                        handleSubmit={button.handleSubmit}
+                        isSpin={button.isSpin}
+                        done={button.done}
+                        doneMessage={button.doneMessage}
+                    />
                 </form>
             </div>
         </div>

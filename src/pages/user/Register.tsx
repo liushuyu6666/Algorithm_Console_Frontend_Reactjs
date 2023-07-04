@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { InputProps } from '../../components/Input';
 import { SubmitProps } from '../../components/Submit';
 import Form from '../../components/Form';
+import { useNavigate } from 'react-router-dom';
 
 export const Register: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -30,6 +31,8 @@ export const Register: React.FC = () => {
         done: false,
         doneMessage: "",
     });
+
+    const navigate = useNavigate();
     
     useEffect(() => {
         // Validate confirm password
@@ -135,11 +138,11 @@ export const Register: React.FC = () => {
             return;
         }
 
-        // TODO: refactor
         setButtonFeatures({
             ...buttonFeatures,
             isSpin: true
         });
+        // TODO: refactor
         fetch('http://localhost:8080/v1/jays/register', {
             method: 'POST',
             headers: {
@@ -154,7 +157,6 @@ export const Register: React.FC = () => {
             return res.json();
         }).then((res) => {
             // Success!
-            // TODO: jump to login page
             setButtonFeatures({
                 ...buttonFeatures,
                 isSpin: false,
@@ -166,7 +168,8 @@ export const Register: React.FC = () => {
                 password: "",
                 email: "",
                 confirmPassword: ""
-            })
+            });
+            navigate('/login');
         });
     };
 
@@ -217,20 +220,18 @@ export const Register: React.FC = () => {
         },
     ];
 
-    const buttons: SubmitProps[] = [
-        {
-            label: 'Submit',
-            handleSubmit,
-            isSpin: buttonFeatures.isSpin,
-            done: buttonFeatures.done,
-            doneMessage: buttonFeatures.doneMessage
-        },
-    ];
+    const button: SubmitProps = {
+        label: 'Submit',
+        handleSubmit,
+        isSpin: buttonFeatures.isSpin,
+        done: buttonFeatures.done,
+        doneMessage: buttonFeatures.doneMessage
+    };
 
     return (
         <Form
             inputBoxes={inputBoxes}
-            buttons={buttons}
+            button={button}
             formName="Set up your account"
         />
     );
