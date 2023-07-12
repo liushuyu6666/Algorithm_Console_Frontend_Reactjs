@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --header-height: 60px;
+    --theme-color: #5A9367
+}
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
@@ -16,9 +20,50 @@ code {
         monospace;
 }
 
+/* Page with header */
+.page-with-header {
+    display: grid;
+    grid-template-rows: var(--header-height) auto;
+    row-gap: 10px;
+    grid-template-areas: 
+        "none"
+        "main";
+}
+
+/* header */
+.header {
+    display: grid;
+    position: fixed;
+
+    grid-template-rows: 1fr;
+    grid-template-columns: 6fr 4fr;
+    grid-template-areas: "none nav";
+
+    width: 100vw;
+    height: var(--header-height);
+    
+    background-color: var(--theme-color);
+}
+
+.header > .nav {
+    display: grid;
+
+    grid-area: nav;
+
+    grid-template-columns: repeat(auto-fit, 100px);
+
+    color: #f7ede2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header > .nav > .nav-item {
+    place-self: center;
+}
+
 /* Canvas */
 .canvas-container {
     display: grid;
+    grid-area: main;
     grid-template-columns: repeat(auto-fit, 300px);
     place-content: center;
     column-gap: 40px;

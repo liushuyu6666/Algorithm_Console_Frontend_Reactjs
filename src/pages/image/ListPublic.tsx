@@ -54,8 +54,8 @@ export const ListPublic: React.FC = () => {
                             imageName: image.filename,
                             blob: blob,
                             uploader: image.username,
-                            alt: "public_image_" + image.filename,
-                        }
+                            alt: 'public_image_' + image.filename,
+                        };
                     })
                     .catch((error) => {
                         // TODO: error page
@@ -97,7 +97,17 @@ export const ListPublic: React.FC = () => {
         }
     }, [imageInfos]);
 
-    return <Canvas imageCards={imageCards} />;
+    return (
+        <header className='page-with-header'>
+            <div className='header'>
+                <nav className='nav'>
+                    <div className='nav-item'>login</div>
+                    <div className='nav-item'>register</div>
+                </nav>
+            </div>
+            <Canvas imageCards={imageCards} />
+        </header>
+    );
 };
 
 export default ListPublic;
