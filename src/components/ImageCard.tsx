@@ -13,8 +13,6 @@ const ImageCard = ({
     alt,
     labels
 }: ImageCardProps): JSX.Element => {
-    const date = new Date();
-
     let lengthOfChar = 0;
 
     console.log(imgSrc);
