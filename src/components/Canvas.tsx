@@ -16,8 +16,8 @@ const Canvas = ({
                         imageId={image.imageId}
                         imageName={image.imageName}
                         imgSrc={image.imgSrc}
+                        uploader={image.uploader}
                         alt={image.alt}
-                        labels={image.labels}
                     />
                 ))
             }

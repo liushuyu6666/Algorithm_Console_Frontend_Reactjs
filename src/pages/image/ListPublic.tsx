@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { ImageCardProps } from '../../components/ImageCard';
 import Canvas from '../../components/Canvas';
 
-export interface Image {
+export interface ImageResponse {
     imageId: string;
-    userId: string;
-    fileName: string;
+    username: string;
+    filename: string;
     key: string;
     uploadDate: Date;
     public: boolean;
@@ -14,7 +14,7 @@ export interface Image {
 }
 
 export const ListPublic: React.FC = () => {
-    const initialImageInfos: Image[] = [];
+    const initialImageInfos: ImageResponse[] = [];
     const initialImageCards: ImageCardProps[] = [];
     const [imageInfos, setImageInfos] = useState(initialImageInfos);
     const [imageCards, setImageCards] = useState(initialImageCards);
@@ -51,10 +51,10 @@ export const ListPublic: React.FC = () => {
                     .then((blob) => {
                         return {
                             imageId: image.imageId,
-                            imageName: image.fileName,
+                            imageName: image.filename,
                             blob: blob,
-                            alt: "public_image_" + image.fileName,
-                            labels: []
+                            uploader: image.username,
+                            alt: "public_image_" + image.filename,
                         }
                     })
                     .catch((error) => {
@@ -75,16 +75,16 @@ export const ListPublic: React.FC = () => {
                                 imageId: img.imageId,
                                 imageName: img.imageName,
                                 imgSrc: URL.createObjectURL(img.blob),
+                                uploader: img.uploader,
                                 alt: img.alt,
-                                labels: [],
                             };
                         } else {
                             return {
                                 imageId: '',
                                 imageName: '',
                                 imgSrc: '',
+                                uploader: '',
                                 alt: '',
-                                labels: [],
                             };
                         }
                     });

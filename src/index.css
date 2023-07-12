@@ -25,15 +25,41 @@ code {
     row-gap: 40px;
 }
 
-.card > .card-header {
-    padding: 0;
-    border: 0;
+/* imageCard */
+.image-card {
+    height: 220px;
+    background-color: wheat;
+    box-shadow: '2px 2px 4px rgba(0, 0, 0, 0.3)';
 }
 
-.homepage-tags-container {
+.image-card > .image-card-top {
+    height: 160px;
+    width: 300px;
+}
+
+.image-card > .image-card-bottom {
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: 21px;
-    place-content: start;
-    column-gap: 2px;
+    grid-template-columns: 7fr 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "image-name gutter image-uploader";
+    height: 60px;
+    width: 300px;
+}
+
+.image-card > .image-card-bottom > .image-name {
+    grid-area: image-name;
+    justify-self: start;
+    align-self: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    padding-left: 7px;
+}
+
+.image-card > .image-card-bottom > .image-uploader {
+    grid-area: image-uploader;
+    justify-self: end;
+    align-self: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 10px;
+    padding-right: 10px;
 }
