@@ -3,6 +3,7 @@ import { InputProps } from '../../components/Input';
 import { SubmitProps } from '../../components/Submit';
 import Form from '../../components/Form';
 import { useNavigate } from 'react-router-dom';
+import fetchData from '../../utils/apiUtils';
 
 export const Login: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ export const Login: React.FC = () => {
 
         // Reset Prompt
         setPrompt({
-            message: "",
+            message: '',
             isValid: true,
         });
     };
@@ -93,7 +94,7 @@ export const Login: React.FC = () => {
             isSpin: true,
         });
 
-        fetch('http://localhost:8080/v1/jays/login', {
+        fetchData('v1/jays/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -104,9 +105,6 @@ export const Login: React.FC = () => {
             }),
         })
             .then((res) => {
-                return res.json();
-            })
-            .then((res) => {
                 if (!res.err) {
                     // Success!
                     setPrompt({
@@ -115,7 +113,7 @@ export const Login: React.FC = () => {
                     });
                     setButtonFeatures({
                         done: true,
-                        doneMessage: "Login successfully",
+                        doneMessage: 'Login successfully',
                         isSpin: false,
                     });
                     localStorage.setItem('Authorization', res.result);

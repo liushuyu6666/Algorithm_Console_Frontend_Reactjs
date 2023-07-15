@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ImageCardProps } from '../../components/ImageCard';
 import Canvas from '../../components/Canvas';
+import fetchData from '../../utils/apiUtils';
 
 export interface ImageResponse {
     imageId: string;
@@ -21,21 +22,16 @@ export const ListPublic: React.FC = () => {
 
     // TODO: API should be configurable
     useEffect(() => {
-        fetch('http://localhost:8080/v1/jays/images/public', {
-            method: 'GET',
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .then((res) => {
-                if (!res.err) {
-                    // Success!
-                    setImageInfos(res.result);
-                } else {
-                    // Error
-                    // TODO: add loading page and error page
-                }
-            });
+        
+        fetchData('v1/jays/images/public', {method: 'GET'}).then((res) => {
+            if (!res.err) {
+                // Success!
+                setImageInfos(res.result);
+            } else {
+                // Error
+                // TODO: add loading page and error page
+            }
+        });
     }, []);
 
     useEffect(() => {
@@ -98,11 +94,11 @@ export const ListPublic: React.FC = () => {
     }, [imageInfos]);
 
     return (
-        <header className='page-with-header'>
-            <div className='header'>
-                <nav className='nav'>
-                    <div className='nav-item'>login</div>
-                    <div className='nav-item'>register</div>
+        <header className="page-with-header">
+            <div className="header">
+                <nav className="nav">
+                    <div className="nav-item">login</div>
+                    <div className="nav-item">register</div>
                 </nav>
             </div>
             <Canvas imageCards={imageCards} />

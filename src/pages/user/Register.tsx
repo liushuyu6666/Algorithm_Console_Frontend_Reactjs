@@ -3,6 +3,7 @@ import { InputProps } from '../../components/Input';
 import { SubmitProps } from '../../components/Submit';
 import Form from '../../components/Form';
 import { useNavigate } from 'react-router-dom';
+import fetchData from '../../utils/apiUtils';
 
 export const Register: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -143,7 +144,7 @@ export const Register: React.FC = () => {
             isSpin: true
         });
         // TODO: refactor
-        fetch('http://localhost:8080/v1/jays/register', {
+        fetchData('v1/jays/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -153,8 +154,6 @@ export const Register: React.FC = () => {
                 password: formData.password,
                 email: formData.email,
             }),
-        }).then((res) => {
-            return res.json();
         }).then((res) => {
             // Success!
             setButtonFeatures({
