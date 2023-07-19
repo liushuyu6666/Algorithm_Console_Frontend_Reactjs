@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ImageCardProps } from '../../components/ImageCard';
 import Canvas from '../../components/Canvas';
 import fetchData from '../../utils/apiUtils';
+import Header from '../../components/Header';
 
 export interface ImageResponse {
     imageId: string;
@@ -20,7 +21,6 @@ export const ListPublic: React.FC = () => {
     const [imageInfos, setImageInfos] = useState(initialImageInfos);
     const [imageCards, setImageCards] = useState(initialImageCards);
 
-    // TODO: API should be configurable
     useEffect(() => {
         
         fetchData('v1/jays/images/public', {method: 'GET'}).then((res) => {
@@ -94,15 +94,9 @@ export const ListPublic: React.FC = () => {
     }, [imageInfos]);
 
     return (
-        <header className="page-with-header">
-            <div className="header">
-                <nav className="nav">
-                    <div className="nav-item">login</div>
-                    <div className="nav-item">register</div>
-                </nav>
-            </div>
+        <Header>
             <Canvas imageCards={imageCards} />
-        </header>
+        </Header>
     );
 };
 
