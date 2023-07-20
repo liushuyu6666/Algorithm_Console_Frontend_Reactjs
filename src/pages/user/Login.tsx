@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import fetchData from '../../utils/apiUtils';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/user/userSlice';
+import { setAuth } from '../../redux/auth/authSlice';
 
 export const Login: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -120,8 +121,8 @@ export const Login: React.FC = () => {
                         doneMessage: 'Login successfully',
                         isSpin: false,
                     });
-                    localStorage.setItem('Authorization', res.result.token);
-                    dispatch(setUser(res.result.username))
+                    dispatch(setUser(res.result.username));
+                    dispatch(setAuth(res.result.token));
                     navigate('/');
                 } else {
                     // Error

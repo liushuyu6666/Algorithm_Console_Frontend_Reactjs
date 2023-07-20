@@ -17,11 +17,14 @@ const Header = ({ children }: HeaderProps): JSX.Element => {
     const loggedIn = () => {
         return (
             <nav className="nav">
-                <div className="nav-item">
+                <button className="nav-item" onClick={() => {
+                    navigate('/private');
+                }}>
                     {shrinkStringByDots(username, 10)}
-                </div>
+                </button>
                 <button className="nav-item" onClick={() => {
                     dispatch(deleteUser());
+                    navigate('/');
                 }}>log out</button>
             </nav>
         );

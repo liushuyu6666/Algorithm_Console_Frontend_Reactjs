@@ -4,11 +4,6 @@ export interface UserState {
     username: string;
 }
 
-export enum UserActionType {
-    SET_USER,
-    DELETE_USER,
-}
-
 const initialState: UserState = {
     username: '',
 };

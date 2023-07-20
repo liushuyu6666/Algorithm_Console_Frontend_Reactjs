@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer, { UserState } from './user/userSlice';
+import authReducer, { AuthState } from './auth/authSlice';
 
 export interface RootState {
     user: UserState;
+    auth: AuthState;
 }
 
 const rootReducer = combineReducers({
-    user: userReducer
+    user: userReducer,
+    auth: authReducer
 });
 
 export const store = configureStore({
