@@ -4,9 +4,8 @@ import { SubmitProps } from '../../components/Submit';
 import Form from '../../components/Form';
 import { useNavigate } from 'react-router-dom';
 import fetchData from '../../utils/apiUtils';
-import { store } from '../../redux';
-import { UserActionType } from '../../redux/user/userReducer';
-import { setProfile } from '../../redux/user/actionCreator';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/user/userSlice';
 
 export const Login: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -34,6 +33,8 @@ export const Login: React.FC = () => {
         message: '',
         isValid: false,
     });
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -120,7 +121,7 @@ export const Login: React.FC = () => {
                         isSpin: false,
                     });
                     localStorage.setItem('Authorization', res.result.token);
-                    store.dispatch(setProfile({ username: res.result.username }))
+                    dispatch(setUser(res.result.username))
                     navigate('/');
                 } else {
                     // Error

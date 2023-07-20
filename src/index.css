@@ -36,7 +36,7 @@ code {
     position: fixed;
 
     grid-template-rows: 1fr;
-    grid-template-columns: 6fr 4fr;
+    grid-template-columns: 8fr 2fr;
     grid-template-areas: "none nav";
 
     width: 100vw;
