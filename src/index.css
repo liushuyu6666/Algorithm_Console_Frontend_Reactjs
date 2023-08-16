@@ -4,7 +4,8 @@
 
 :root {
     --header-height: 60px;
-    --theme-color: #5A9367
+    --theme-color: #4f46e5;
+    --theme-white: #f7ede2
 }
 body {
     margin: 0;
@@ -20,18 +21,20 @@ code {
         monospace;
 }
 
-/* Page with header */
-.page-with-header {
+/* Page */
+.page {
     display: grid;
     grid-template-rows: var(--header-height) auto;
     row-gap: 10px;
     grid-template-areas: 
-        "none"
-        "main";
+        "header"
+        "canvas";
 }
 
 /* header */
 .header {
+    grid-area: header;
+
     display: grid;
     position: fixed;
 
@@ -52,7 +55,7 @@ code {
 
     grid-template-columns: repeat(auto-fit, 100px);
 
-    color: #f7ede2;
+    color: var(--theme-white);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -60,51 +63,34 @@ code {
     place-self: center;
 }
 
-/* Canvas */
-.canvas-container {
+/* canvas */
+.canvas {
+    grid-area: canvas;
+
     display: grid;
-    grid-area: main;
-    grid-template-columns: repeat(auto-fit, 300px);
-    place-content: center;
-    column-gap: 40px;
-    row-gap: 40px;
-}
 
-/* imageCard */
-.image-card {
-    height: 220px;
-    background-color: wheat;
-    box-shadow: '2px 2px 4px rgba(0, 0, 0, 0.3)';
-}
-
-.image-card > .image-card-top {
-    height: 160px;
-    width: 300px;
-}
-
-.image-card > .image-card-bottom {
-    display: grid;
-    grid-template-columns: 7fr 1fr 2fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "image-name gutter image-uploader";
-    height: 60px;
-    width: 300px;
-}
-
-.image-card > .image-card-bottom > .image-name {
-    grid-area: image-name;
-    justify-self: start;
-    align-self: center;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 15px;
-    padding-left: 7px;
-}
-
-.image-card > .image-card-bottom > .image-uploader {
-    grid-area: image-uploader;
-    justify-self: end;
-    align-self: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 10px;
+    padding-left: 10px;
     padding-right: 10px;
+}
+
+/* table */
+.cell {
+    padding: 5px;
+}
+
+.labels {
+    display: flex;
+
+    flex-flow: row wrap;
+
+    justify-content: flex-start;
+
+    gap: 5px;
+}
+
+.labels > .label {
+    color: var(--theme-white);
+    background-color: #4f46e5;
+    padding-left: 5px;
+    padding-right: 5px;
 }

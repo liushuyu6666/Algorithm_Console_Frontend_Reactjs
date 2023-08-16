@@ -47,11 +47,13 @@ const Header = ({ children }: HeaderProps): JSX.Element => {
     };
 
     return (
-        <header className="page-with-header">
+        <header className="page">
             <div className="header">
                 {username.length > 0 ? loggedIn() : anonymity()}
             </div>
-            {children}
+            <div className="canvas">
+                {children}
+            </div>
         </header>
     );
 };
