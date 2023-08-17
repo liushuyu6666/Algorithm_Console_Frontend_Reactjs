@@ -1,5 +1,5 @@
 import './App.css';
-import ListPublic from './pages/image/ListPublic';
+import ListAllQuestions from './pages/questions/ListAllQuestions';
 import Login from './pages/user/Login';
 import Register from './pages/user/Register';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <ListPublic />,
+        element: <ListAllQuestions />,
     },
 ]);
 
